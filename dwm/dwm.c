@@ -260,7 +260,7 @@ static void grabkeys(void);
 /* static void incnmaster(const Arg *arg); */
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
-static void loadxrdb(void);
+// static void loadxrdb(void);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
@@ -328,7 +328,7 @@ static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
-static void xrdb(const Arg *arg);
+// static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
 static void load_xresources(void);
 static void resource_load(XrmDatabase db, char *name, enum resource_type rtype,
@@ -1306,7 +1306,7 @@ void killclient(const Arg *arg) {
   }
 }
 
-void loadxrdb() {
+/* void loadxrdb() {
   Display *display;
   char *resm;
   XrmDatabase xrdb;
@@ -1333,7 +1333,7 @@ void loadxrdb() {
   }
 
   XCloseDisplay(display);
-}
+} */
 
 void manage(Window w, XWindowAttributes *wa) {
   Client *c, *t = NULL, *term = NULL;
@@ -2600,14 +2600,14 @@ int xerrorstart(Display *dpy, XErrorEvent *ee) {
   return -1;
 }
 
-void xrdb(const Arg *arg) {
+/* void xrdb(const Arg *arg) {
   loadxrdb();
   int i;
   for (i = 0; i < LENGTH(colors); i++)
     scheme[i] = drw_scm_create(drw, colors[i], 3);
   focus(NULL);
   arrange(NULL);
-}
+} */
 
 void zoom(const Arg *arg) {
   Client *c = selmon->sel;

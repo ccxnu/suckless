@@ -8,7 +8,7 @@ static void incrgaps(const Arg *arg);
 /* static void incrihgaps(const Arg *arg); */
 /* static void incrivgaps(const Arg *arg); */
 /* static void togglegaps(const Arg *arg); */
-static void togglesmartgaps(const Arg *arg);
+/* static void togglesmartgaps(const Arg *arg); */
 
 /* Layouts */
 static void bstack(Monitor *m);
@@ -49,12 +49,12 @@ setgaps(int oh, int ov, int ih, int iv)
 /* 	arrange(NULL); */
 /* } */
 
-static void
+/*static void
 togglesmartgaps(const Arg *arg)
 {
 	smartgaps = !smartgaps;
 	arrange(NULL);
-}
+}*/
 
 static void
 defaultgaps(const Arg *arg)
