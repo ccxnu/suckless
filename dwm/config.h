@@ -7,7 +7,7 @@
 
 #define TERMINAL "st"
 #define TERMCLASS "St"
-/* #define BROWSER "qutebrowser" */
+#define BROWSER "firefox"
 
 /*  Appearance */
 
@@ -68,9 +68,8 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* Class-Instance-Title-Tags-Mask-Isfloating-Isterminal-Noswallow-Monitor */
-    {"Google-chrome", NULL,         NULL,   1 << 1, 0, 0, 0, -1},
-    {"Inkscape",      NULL,         NULL,   1 << 2, 0, 0, 0, -1},
     {"thunar",        NULL,         NULL,   1 << 2, 0, 0, 0, -1},
+    {BROWSER,         NULL,         NULL,   1 << 1, 0, 0, 0, -1},
     {TERMCLASS,       NULL,         NULL,        0, 0, 1, 0, -1},
     {TERMCLASS,       "floatterm",  NULL,        0, 1, 1, 0, -1},
     {TERMCLASS,       "bg",         NULL,   1 << 7, 0, 1, 0, -1},
@@ -171,10 +170,9 @@ static const Key keys[] = {
 
   /* ALT KEYMAPS */
 
-	/* { ALTSHIFT,    XK_f,	          	spawn,		{.v = (const char*[]){ BROWSER, NULL } } }, // Firefox */
-	{ ALTSHIFT,     XK_c,	          	spawn,		{.v = (const char*[]){ "google-chrome-stable", NULL } } }, // Chrome
-	{ ALTSHIFT,     XK_t,	          	spawn,		{.v = (const char*[]){ "thunar", NULL } } }, // Thunar
-	{ ALTSHIFT,     XK_i,	          	spawn,		{.v = (const char*[]){ "inkscape", NULL } } }, // Inkscape
+	{ ALTSHIFT,    XK_c,    spawn,    {.v = (const char*[]){ BROWSER, NULL } } }, // Firefox
+	{ ALTSHIFT,    XK_t,    spawn,    {.v = (const char*[]){ "thunar", NULL } } }, // Thunar
+	{ ALTSHIFT,    XK_i,    spawn,    {.v = (const char*[]){ "inkscape", NULL } } }, // Inkscape
 
   /* TAGS */
 
