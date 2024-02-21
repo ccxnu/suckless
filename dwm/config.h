@@ -24,10 +24,7 @@ static int topbar = 1;  /* 0 means bottom bar */
 
 /*  Fonts  */
 
-static char *fonts[] = {
-    "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true",
-    "Noto Color Emoji:pixelsize=10:antialias=true:autohint=true",
-};
+static char *fonts[] = { "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true" };
 
 static char normbgcolor[] = "#000000";
 static char normbordercolor[] = "#1D1D1D";
@@ -68,14 +65,13 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* Class-Instance-Title-Tags-Mask-Isfloating-Isterminal-Noswallow-Monitor */
-    {"thunar",        NULL,         NULL,   1 << 2, 0, 0, 0, -1},
-    {BROWSER,         NULL,         NULL,   1 << 1, 0, 0, 0, -1},
-    {TERMCLASS,       NULL,         NULL,        0, 0, 1, 0, -1},
-    {TERMCLASS,       "floatterm",  NULL,        0, 1, 1, 0, -1},
-    {TERMCLASS,       "bg",         NULL,   1 << 7, 0, 1, 0, -1},
-    {TERMCLASS,       "spterm",     NULL, SPTAG(0), 1, 1, 0, -1},
-    {TERMCLASS,       "spcalc",     NULL, SPTAG(1), 1, 1, 0, -1},
-    {TERMCLASS,       "spclok",     NULL, SPTAG(2), 1, 1, 0, -1},
+    {BROWSER,      NULL,         NULL,   1 << 1, 0, 0, 0, -1},
+    {TERMCLASS,    NULL,         NULL,        0, 0, 1, 0, -1},
+    {TERMCLASS,    "floatterm",  NULL,        0, 1, 1, 0, -1},
+    {TERMCLASS,    "bg",         NULL,   1 << 7, 0, 1, 0, -1},
+    {TERMCLASS,    "spterm",     NULL, SPTAG(0), 1, 1, 0, -1},
+    {TERMCLASS,    "spcalc",     NULL, SPTAG(1), 1, 1, 0, -1},
+    {TERMCLASS,    "spclok",     NULL, SPTAG(2), 1, 1, 0, -1},
 };
 
 /* Layout(s) */
@@ -97,6 +93,7 @@ static const Layout layouts[] = {
     {"|M|", centeredmaster},         /* Master in middle, slaves on sides */
     {">M>", centeredfloatingmaster}, /* Same but master floats */
     {"><>", NULL},                   /* no layout function means floating behavior */
+    {NULL, NULL},
 };
 
 /* Key definitions */
@@ -159,7 +156,7 @@ ResourcePref resources[] = {
 #include "options/shiftview.c"
 #include <X11/XF86keysym.h>
 
-static const char *lf[] = {TERMINAL, "-n", "lf", "-e", "lf", NULL};
+static const char *ranger[] = {TERMINAL, "-n", "ranger", "-e", "ranger", NULL};
 static const char *lock[] = {"/usr/bin/betterlockscreen", "-l", "dimblur", NULL};
 static const char *btop[] = {TERMINAL, "-n", "btop", "-e", "btop", NULL};
 
@@ -171,8 +168,6 @@ static const Key keys[] = {
   /* ALT KEYMAPS */
 
 	{ ALTSHIFT,    XK_c,    spawn,    {.v = (const char*[]){ BROWSER, NULL } } }, // Firefox
-	{ ALTSHIFT,    XK_t,    spawn,    {.v = (const char*[]){ "thunar", NULL } } }, // Thunar
-	{ ALTSHIFT,    XK_i,    spawn,    {.v = (const char*[]){ "inkscape", NULL } } }, // Inkscape
 
   /* TAGS */
 
@@ -182,10 +177,10 @@ static const Key keys[] = {
 
   /* PERSONAL APPS KEYMAPS */
 
-	{ MODKEY,	   	XK_r,       spawn,    {.v = lf } }, // lf
+	{ MODKEY,	    XK_r,       spawn,    {.v = ranger } }, // ranger
 	{ MODKEY,     XK_d,       spawn,    {.v = dmenucmd } }, // dmenu
-	{ MODKEY,	   XK_F5,       spawn,    {.v = lock } }, // betterlockscreen
-	{ MODKEY,    XK_F7,       spawn,    {.v = btop } }, // btop
+	{ 0,         XK_F7,       spawn,    {.v = lock } }, // betterlockscreen
+	{ 0,         XK_F8,       spawn,    {.v = btop } }, // btop
 	{ MODKEY,    XK_F4,       spawn,    {.v = (const char*[]){ "pavucontrol" , NULL } } }, // Pavucontrol
 
   /* PERSONAL SCRIPTS KEYMAPS */
@@ -195,10 +190,11 @@ static const Key keys[] = {
 
   // FLOATING WINDOWS
 
-	{ MODKEY|ShiftMask,		  XK_Return,	    togglescratch,	{.ui = 0} },
-	{ MODKEY,			          XK_apostrophe,	togglescratch,  {.ui = 1} },
-	{ MODKEY,			          XK_semicolon,	  togglescratch,  {.ui = 2} },
-	{ MODKEY,			          XK_Return,	    spawn,		      {.v = termcmd } },
+	{ MODKEY|ShiftMask,		XK_Return,	    togglescratch,	{.ui = 0} },
+	{ MODKEY,			        XK_apostrophe,	togglescratch,  {.ui = 1} },
+	{ MODKEY,			        XK_semicolon,	  togglescratch,  {.ui = 2} },
+	{ MODKEY,			        XK_Return,	    spawn,		      {.v = termcmd } },
+	{ MODKEY|ShiftMask,   XK_space,       togglefloating,	{0} },
 
   /* LAYOUTS KEYMAPS */
 
@@ -254,21 +250,21 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPlay,		       spawn,		      SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
 	{ 0, XF86XK_AudioStop,		       spawn,		      SHCMD("playerctl stop; pkill -RTMIN+12 dwmblocks") },
 
-	{ 0, XF86XK_AudioRewind,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
-	{ 0, XF86XK_AudioForward,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
-	{ 0, XF86XK_AudioMedia,		       spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
-	{ 0, XF86XK_AudioMicMute,	       spawn,		      SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
-	{ 0, XF86XK_PowerOff,	           spawn,		      {.v = (const char*[]){ "sysact", NULL } } },
-	{ 0, XF86XK_Calculator,		       spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "bc", "-l", NULL } } },
-	{ 0, XF86XK_Sleep,	             spawn,		      {.v = (const char*[]){ "sudo", "-A", "zzz", NULL } } },
-	{ 0, XF86XK_DOS,	               spawn,		      {.v = termcmd } },
-	{ 0, XF86XK_ScreenSaver,	       spawn,		      SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
-	{ 0, XF86XK_TaskPane,		         spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "btop", NULL } } },
-	{ 0, XF86XK_Mail,		             spawn,		      SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
-	{ 0, XF86XK_Launch1,	           spawn,		      {.v = (const char*[]){ "xset", "dpms", "force", "off", NULL } } },
-	{ 0, XF86XK_TouchpadToggle,	     spawn,		      SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
-	{ 0, XF86XK_TouchpadOff,	       spawn,		      {.v = (const char*[]){ "synclient", "TouchpadOff=1", NULL } } },
-	{ 0, XF86XK_TouchpadOn,	         spawn,		      {.v = (const char*[]){ "synclient", "TouchpadOff=0", NULL } } },
+	//{ 0, XF86XK_AudioRewind,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
+	//{ 0, XF86XK_AudioForward,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
+	//{ 0, XF86XK_AudioMedia,		       spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
+	//{ 0, XF86XK_AudioMicMute,	       spawn,		      SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	//{ 0, XF86XK_PowerOff,	           spawn,		      {.v = (const char*[]){ "sysact", NULL } } },
+	//{ 0, XF86XK_Calculator,		       spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "bc", "-l", NULL } } },
+	//{ 0, XF86XK_Sleep,	             spawn,		      {.v = (const char*[]){ "sudo", "-A", "zzz", NULL } } },
+	//{ 0, XF86XK_DOS,	               spawn,		      {.v = termcmd } },
+	//{ 0, XF86XK_ScreenSaver,	       spawn,		      SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
+	//{ 0, XF86XK_TaskPane,		         spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "btop", NULL } } },
+	//{ 0, XF86XK_Mail,		             spawn,		      SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
+	//{ 0, XF86XK_Launch1,	           spawn,		      {.v = (const char*[]){ "xset", "dpms", "force", "off", NULL } } },
+	//{ 0, XF86XK_TouchpadToggle,	     spawn,		      SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
+	//{ 0, XF86XK_TouchpadOff,	       spawn,		      {.v = (const char*[]){ "synclient", "TouchpadOff=1", NULL } } },
+	//{ 0, XF86XK_TouchpadOn,	         spawn,		      {.v = (const char*[]){ "synclient", "TouchpadOff=0", NULL } } },
 
 };
 

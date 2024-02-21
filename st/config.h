@@ -182,9 +182,9 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_j,           kscrolldown,    {.i = 1} },
   { MODKEY,               XK_s,           changealpha,    {.f = -0.05}},
   { MODKEY,               XK_a,           changealpha,    {.f = +0.05}},
-  { MODKEY,               XK_U,           zoom,           {.f = +1}},
-  { MODKEY,               XK_D,           zoom,           {.f = -1}},
-  { MODKEY,               XK_K,           zoomreset,      {.f = 0} },
+	{ ControlMask,          XK_plus,        zoom,           {.f = +1} },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -1} },
+  { ControlMask,          XK_numbersign,  zoomreset,      {.f = 0} },
   /* ST SCRIPTS */
   { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd}},
   { MODKEY,               XK_c,           externalpipe,   {.v = copyurlcmd}},

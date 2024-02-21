@@ -2813,4 +2813,3 @@ redraw(void)
 	tfulldirt();
 	draw();
 }
-
