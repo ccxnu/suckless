@@ -53,7 +53,7 @@ typedef struct {
   const void *cmd;
 } Sp;
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL};
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "FiraCode Nerd Font:size=20", "-g", "35x12", "-e", "bc", "-lq", NULL};
+const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-g", "35x12", "-e", "bc", "-lq", NULL};
 const char *spcmd3[] = {TERMINAL, "-n", "spclok", "-g", "37x09", "-e", "tty-clock", "-C", "7", NULL};
 static Sp scratchpads[] = {
     /* name          cmd  */
@@ -191,7 +191,7 @@ static const Key keys[] = {
   /* PERSONAL SCRIPTS KEYMAPS */
 
 	{ MODKEY|ShiftMask,  XK_BackSpace,  spawn,  {.v = (const char*[]){ "sysact", NULL } } }, // Systemt control
-	{ MODKEY|ShiftMask,  XK_s,          spawn,  {.v = (const char*[]){ "capture", NULL } } }, // Screenshot
+	{ 0,  XK_Print,          spawn,  {.v = (const char*[]){ "capture", NULL } } }, // Screenshot
 
   // FLOATING WINDOWS
 
@@ -241,9 +241,9 @@ static const Key keys[] = {
 
   /* Fn Keymaps */
 
-	{ 0, XF86XK_AudioMute,		       spawn,		      SHCMD("amixer -q -D pulse sset Master toggle; pkill -RTMIN+10 dwmblocks") },
-	{ 0, XF86XK_AudioRaiseVolume,	   spawn,		      SHCMD("amixer -q -D pulse sset Master 5%+; pkill -RTMIN+10 dwmblocks")},
-	{ 0, XF86XK_AudioLowerVolume,	   spawn,		      SHCMD("amixer -q -D pulse sset Master 5%-; pkill -RTMIN+10 dwmblocks")},
+	{ 0, XF86XK_AudioMute,		       spawn,		      SHCMD("amixer -q sset Master toggle; pkill -RTMIN+10 dwmblocks") },
+	{ 0, XF86XK_AudioRaiseVolume,	   spawn,		      SHCMD("amixer -q sset Master 5%+; pkill -RTMIN+10 dwmblocks")},
+	{ 0, XF86XK_AudioLowerVolume,	   spawn,		      SHCMD("amixer -q sset Master 5%-; pkill -RTMIN+10 dwmblocks")},
 
 	{ 0, XF86XK_MonBrightnessUp,	   spawn,		      SHCMD("light -A 5; pkill -RTMIN+5 dwmblocks") },
 	{ 0, XF86XK_MonBrightnessDown,	 spawn,		      SHCMD("light -U 5; pkill -RTMIN+5 dwmblocks") },

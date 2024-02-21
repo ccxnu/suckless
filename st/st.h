@@ -89,7 +89,6 @@ void externalpipe(const Arg *);
 void kscrolldown(const Arg *);
 void kscrollup(const Arg *);
 
-void newterm(const Arg *);
 void printscreen(const Arg *);
 void printsel(const Arg *);
 void sendbreak(const Arg *);
@@ -139,7 +138,6 @@ extern wchar_t *worddelimiters;
 extern int allowaltscreen;
 extern int allowwindowops;
 extern char *termname;
-extern int usealtcolors;
 extern unsigned int tabspaces;
 extern unsigned int defaultfg;
 extern unsigned int defaultbg;
