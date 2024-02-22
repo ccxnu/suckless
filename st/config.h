@@ -62,10 +62,10 @@ static int bellvolume = 0;
 char *termname = "st-256color";
 
 /* SPACES PER TAB */
-unsigned int tabspaces = 2;
+unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.85;
+float alpha = 0.9;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
@@ -73,31 +73,31 @@ float alphaUnfocus;
 /* Defaults to this colors if there aren't Xresources defining them */
 /* solarized dark */
 static const char *colorname[] = {
-  "#073642", /*  0: black    */
+  "#00181D", /*  0: black    */
   "#dc322f", /*  1: red      */
   "#8EB95F", /*  2: green    */
   "#e0af68", /*  3: yellow   */
   "#268bd2", /*  4: blue     */
-  "#bb9af7", /*  5: magenta  */
+  "#d33682", /*  5: magenta  */
   "#2aa198", /*  6: cyan     */
-  "#eee8d5", /*  7: white    */
-  "#002b36", /*  8: brblack    */
-  "#f7768e", /*  9: brred    */
-  "#586e75", /* 10: brgreen  */
-  "#657b83", /* 11: bryellow */
-  "#839496", /* 12: brblue   */
-  "#6c71c4", /* 13: brmagenta*/
-  "#93a1a1", /* 14: brcyan   */
-  "#fdf6e3", /* 15: brwhite  */
+  "#E7DEC3", /*  7: white    */
+
+  "#3f3f3f", /*  8: brblack    */
+  "#cb4b16", /*  9: brred    */ 
+  "#6A8E6A", /* 10: brgreen  */ 
+  "#f4bf75", /* 11: bryellow */ 
+  "#7cb8bb", /* 12: brblue   */ 
+  "#f7768e",  /* 13: brmagenta*/ 
+  "#23edda", /* 14: brcyan   */ 
+  "#fdf6e3", /* 15: brwhite  */ 
 
   [255] = 0,
 
   /* more colors can be added after 255 to use with DefaultXX */
-  "#cccccc", /* 256: default cursor colour */
-  "#838EA6", /* 257: default reverse cursor colour */
-  "#DCD7BA", /* 258: default foreground colour */
-  "#0B0B10", /* 259: default background colour */
-             // "#181816", /* 257: default background colour */
+  "#c8d3f5", /* 256: default cursor colour */
+  "#3654a7", /* 257: default reverse cursor colour */
+  "#dcd7ba", /* 258: default foreground colour */
+  "#0b0b10", /* 259: default background colour */
 };
 
 /*

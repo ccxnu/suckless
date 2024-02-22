@@ -65,13 +65,13 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* Class-Instance-Title-Tags-Mask-Isfloating-Isterminal-Noswallow-Monitor */
-    {BROWSER,      NULL,         NULL,   1 << 1, 0, 0, 0, -1},
-    {TERMCLASS,    NULL,         NULL,        0, 0, 1, 0, -1},
-    {TERMCLASS,    "floatterm",  NULL,        0, 1, 1, 0, -1},
-    {TERMCLASS,    "bg",         NULL,   1 << 7, 0, 1, 0, -1},
-    {TERMCLASS,    "spterm",     NULL, SPTAG(0), 1, 1, 0, -1},
-    {TERMCLASS,    "spcalc",     NULL, SPTAG(1), 1, 1, 0, -1},
-    {TERMCLASS,    "spclok",     NULL, SPTAG(2), 1, 1, 0, -1},
+    {"Firefox",    NULL,         NULL,     1 << 1,    0,    0,    0,    -1},
+    {TERMCLASS,    NULL,         NULL,          0,    0,    1,    0,    -1},
+    {TERMCLASS,    "floatterm",  NULL,          0,    1,    1,    0,    -1},
+    {TERMCLASS,    "bg",         NULL,     1 << 7,    0,    1,    0,    -1},
+    {TERMCLASS,    "spterm",     NULL,   SPTAG(0),    1,    1,    0,    -1},
+    {TERMCLASS,    "spcalc",     NULL,   SPTAG(1),    1,    1,    0,    -1},
+    {TERMCLASS,    "spclok",     NULL,   SPTAG(2),    1,    1,    0,    -1},
 };
 
 /* Layout(s) */
