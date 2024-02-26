@@ -90,16 +90,13 @@ static const Layout layouts[] = {
     {"TTT", bstack},                 /* Master on top, slaves on bottom */
     {"[M]", monocle},                /* All windows on top of eachother */
     {"H[]", deck},                   /* Master on left, slaves in monocle-like mode on right */
-    {"|M|", centeredmaster},         /* Master in middle, slaves on sides */
-    {">M>", centeredfloatingmaster}, /* Same but master floats */
     {"><>", NULL},                   /* no layout function means floating behavior */
     {NULL, NULL},
 };
 
 /* Key definitions */
-#define MODALT Mod1Mask               /* Alt Key */
-#define ALTSHIFT Mod1Mask | ShiftMask /* Alt + Shift */
 #define MODKEY Mod4Mask               /* Super Key*/
+#define MSHIFT Mod4Mask | ShiftMask /* Super + Shift */
 #define TAGKEYS(KEY, TAG)                                                  \
   {MODKEY, KEY, view, {.ui = 1 << TAG}},                                   \
   {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
@@ -163,92 +160,85 @@ static const char *btop[] = {TERMINAL, "-n", "btop", "-e", "btop", NULL};
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	STACKKEYS(MODKEY,                          focus)
-	STACKKEYS(MODKEY|ShiftMask,                push)
-
-  /* ALT KEYMAPS */
-
-	{ ALTSHIFT,    XK_c,    spawn,    {.v = (const char*[]){ BROWSER, NULL } } }, // Firefox
+	STACKKEYS(MSHIFT,                push)
 
   /* TAGS */
 
-	TAGKEYS(  XK_ampersand,    0)
-	TAGKEYS(  XK_bracketleft,  1)
-	TAGKEYS(  XK_braceleft,    2)
+	TAGKEYS( XK_g, 0)
+	TAGKEYS( XK_c, 1)
+	TAGKEYS( XK_r, 2)
 
   /* PERSONAL APPS KEYMAPS */
 
-	{ MODKEY,	    XK_r,       spawn,    {.v = ranger } }, // ranger
-	{ MODKEY,     XK_d,       spawn,    {.v = dmenucmd } }, // dmenu
-	{ 0,         XK_F7,       spawn,    {.v = lock } }, // betterlockscreen
-	{ 0,         XK_F8,       spawn,    {.v = btop } }, // btop
-	{ MODKEY,    XK_F4,       spawn,    {.v = (const char*[]){ "pavucontrol" , NULL } } }, // Pavucontrol
+	{ MODKEY,    XK_d,     spawn,    {.v = dmenucmd } }, // dmenu
+	{ 0,         XK_F7,    spawn,    {.v = lock } }, // betterlockscreen
+	{ 0,         XK_F8,    spawn,    {.v = btop } }, // btop
+	{ MODKEY,    XK_F4,    spawn,    {.v = (const char*[]){ "pavucontrol" , NULL } } }, // Pavucontrol
+	{ MODKEY,    XK_bracketleft,     spawn,    {.v = (const char*[]){ BROWSER, NULL } } }, // Firefox
+	{ MODKEY,    XK_braceleft,     spawn,    {.v = ranger } }, // ranger
 
   /* PERSONAL SCRIPTS KEYMAPS */
 
-	{ MODKEY|ShiftMask,  XK_BackSpace,  spawn,  {.v = (const char*[]){ "sysact", NULL } } }, // Systemt control
-	{ 0,  XK_Print,          spawn,  {.v = (const char*[]){ "capture", NULL } } }, // Screenshot
+	{ MSHIFT,    XK_BackSpace,    spawn,    {.v = (const char*[]){ "sysact", NULL } } }, // Systemt control
+	{ 0,         XK_Print,        spawn,    {.v = (const char*[]){ "capture", NULL } } }, // Screenshot
 
   // FLOATING WINDOWS
 
-	{ MODKEY|ShiftMask,		XK_Return,	    togglescratch,	{.ui = 0} },
-	{ MODKEY,			        XK_apostrophe,	togglescratch,  {.ui = 1} },
-	{ MODKEY,			        XK_semicolon,	  togglescratch,  {.ui = 2} },
-	{ MODKEY,			        XK_Return,	    spawn,		      {.v = termcmd } },
-	{ MODKEY|ShiftMask,   XK_space,       togglefloating,	{0} },
+	{ MODKEY,    XK_apostrophe,    togglescratch,     {.ui = 1} },
+	{ MODKEY,    XK_semicolon,     togglescratch,     {.ui = 2} },
+	{ MODKEY,    XK_Return,        spawn,             {.v = termcmd } },
+	{ MSHIFT,    XK_Return,        togglescratch,     {.ui = 0} },
+	{ MSHIFT,    XK_space,         togglefloating,    {0} },
 
   /* LAYOUTS KEYMAPS */
 
-	{ MODKEY,		        	XK_t,		setlayout,	{.v = &layouts[0]} },	/* tile si */
-	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[1]} },	/* bstack */
-	{ MODKEY,		        	XK_m,		setlayout,	{.v = &layouts[2]} },	/* monocle si */
-	{ MODKEY|ShiftMask,	 	XK_m,		setlayout,	{.v = &layouts[3]} },	/* deck si*/
-	{ MODKEY,			        XK_c,		setlayout,	{.v = &layouts[4]} },	/* centeredmaster */
-	{ MODKEY|ShiftMask,		XK_c,	 	setlayout,  {.v = &layouts[5]} }, /* centeredfloatingmaster */
-	{ MODKEY|ShiftMask,	  XK_v, 	setlayout,	{0} },
+	{ MODKEY,    XK_t,    setlayout,    {.v = &layouts[0]} },	/* tile si */
+	{ MSHIFT,    XK_t,    setlayout,    {.v = &layouts[1]} },	/* bstack */
+	{ MODKEY,    XK_m,    setlayout,    {.v = &layouts[2]} },	/* monocle si */
+	{ MSHIFT,    XK_m,    setlayout,    {.v = &layouts[3]} },	/* deck si*/
+	{ MSHIFT,    XK_v,    setlayout,    {0} },
 
   /* GENERAL SYSTEM KEYMAPS */
 
-	{ MODKEY,			        XK_Tab,		        view,		        {0} },
-	{ MODKEY|ShiftMask,		XK_w,	        	  killclient,     {0} },
-	{ MODKEY,			        XK_f,	        	  togglefullscr,  {0} },
-	{ MODKEY,		        	XK_space,	        zoom,		        {0} },
-	{ MODKEY,			        XK_plus,    	    shiftview,      { .i = -1 } },
-	{ MODKEY,			        XK_bracketright,	shiftview,	    { .i = +1 } },
-	{ MODKEY,		        	XK_j,	          	setmfact,	      { .f = -0.05 } },
-	{ MODKEY,			        XK_k,		          setmfact,       { .f = +0.05 } },
+	{ MODKEY,    XK_Tab,          view,           {0} },
+	{ MSHIFT,    XK_w,            killclient,     {0} },
+	{ MODKEY,    XK_f,            togglefullscr,  {0} },
+	{ MODKEY,    XK_space,        zoom,           {0} },
+	{ MODKEY,    XK_j,            setmfact,	      { .f = -0.05 } },
+	{ MODKEY,    XK_k,            setmfact,       { .f = +0.05 } },
 
   /* WINDOW GAPS */
 
-	{ MODKEY|ShiftMask,		XK_a,		        defaultgaps,	  {0} },
-	{ MODKEY,			        XK_s,		        togglesticky,	  {0} },
-	{ MODKEY,			        XK_z,		        incrgaps,	      {.i = +2 } },
-	{ MODKEY,			        XK_x,	        	incrgaps,	      {.i = -2 } },
-	{ MODKEY,			        XK_b,		        togglebar,    	{0} },
+	{ MSHIFT,    XK_a,    defaultgaps,    {0} },
+	{ MODKEY,    XK_s,    togglesticky,   {0} },
+	{ MODKEY,    XK_z,    incrgaps,       {.i = +2 } },
+	{ MODKEY,    XK_x,    incrgaps,       {.i = -2 } },
+	{ MODKEY,    XK_b,    togglebar,      {0} },
 
   /* EXTERNAL MONITOR */
-	{ MODKEY|ShiftMask,   XK_plus,	         focusmon,    {.i = -1 } },
-	{ MODKEY|ShiftMask,   XK_bracketright,   focusmon,    {.i = +1 } },
-	{ MODKEY|ShiftMask,   XK_Left,	           tagmon,    {.i = -1 } },
-	{ MODKEY|ShiftMask,   XK_Right,	           tagmon,    {.i = +1 } },
+	{ MSHIFT,    XK_plus,           focusmon,    {.i = -1 } },
+	{ MSHIFT,    XK_bracketright,   focusmon,    {.i = +1 } },
+	{ MSHIFT,    XK_Left,           tagmon,      {.i = -1 } },
+	{ MSHIFT,    XK_Right,          tagmon,      {.i = +1 } },
 
   /* AUDIO OUTPUT SPEAKER/HEADPHONE */
-	{ MODKEY,  XK_F2,  spawn,  SHCMD("pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-speaker") },
-	{ MODKEY,  XK_F3,  spawn,  SHCMD("pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-headphones") },
+	{ MODKEY,    XK_F2,    spawn,   SHCMD("pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-speaker") },
+	{ MODKEY,    XK_F3,    spawn,   SHCMD("pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-headphones") },
 
   /* Fn Keymaps */
 
-	{ 0, XF86XK_AudioMute,		       spawn,		      SHCMD("amixer -q sset Master toggle; pkill -RTMIN+10 dwmblocks") },
-	{ 0, XF86XK_AudioRaiseVolume,	   spawn,		      SHCMD("amixer -q sset Master 5%+; pkill -RTMIN+10 dwmblocks")},
-	{ 0, XF86XK_AudioLowerVolume,	   spawn,		      SHCMD("amixer -q sset Master 5%-; pkill -RTMIN+10 dwmblocks")},
+	{ 0, XF86XK_AudioMute,           spawn,    SHCMD("amixer -q sset Master toggle; pkill -RTMIN+10 dwmblocks") },
+	{ 0, XF86XK_AudioRaiseVolume,    spawn,    SHCMD("amixer -q sset Master 5%+; pkill -RTMIN+10 dwmblocks")},
+	{ 0, XF86XK_AudioLowerVolume,    spawn,    SHCMD("amixer -q sset Master 5%-; pkill -RTMIN+10 dwmblocks")},
 
-	{ 0, XF86XK_MonBrightnessUp,	   spawn,		      SHCMD("light -A 5; pkill -RTMIN+5 dwmblocks") },
-	{ 0, XF86XK_MonBrightnessDown,	 spawn,		      SHCMD("light -U 5; pkill -RTMIN+5 dwmblocks") },
+	{ 0, XF86XK_MonBrightnessUp,     spawn,    SHCMD("light -A 5; pkill -RTMIN+5 dwmblocks") },
+	{ 0, XF86XK_MonBrightnessDown,   spawn,    SHCMD("light -U 5; pkill -RTMIN+5 dwmblocks") },
 
-	{ 0, XF86XK_AudioPrev,		       spawn,		      SHCMD("playerctl previous; pkill -RTMIN+12 dwmblocks") },
-	{ 0, XF86XK_AudioNext,		       spawn,		      SHCMD("playerctl next; pkill -RTMIN+12 dwmblocks") },
-	{ 0, XF86XK_AudioPause,		       spawn,		      SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
-	{ 0, XF86XK_AudioPlay,		       spawn,		      SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
-	{ 0, XF86XK_AudioStop,		       spawn,		      SHCMD("playerctl stop; pkill -RTMIN+12 dwmblocks") },
+	{ 0, XF86XK_AudioPrev,           spawn,    SHCMD("playerctl previous; pkill -RTMIN+12 dwmblocks") },
+	{ 0, XF86XK_AudioNext,           spawn,    SHCMD("playerctl next; pkill -RTMIN+12 dwmblocks") },
+	{ 0, XF86XK_AudioPause,          spawn,    SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
+	{ 0, XF86XK_AudioPlay,           spawn,    SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
+	{ 0, XF86XK_AudioStop,           spawn,    SHCMD("playerctl stop; pkill -RTMIN+12 dwmblocks") },
 
 	//{ 0, XF86XK_AudioRewind,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
 	//{ 0, XF86XK_AudioForward,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },

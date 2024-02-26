@@ -83,13 +83,13 @@ static const char *colorname[] = {
   "#E7DEC3", /*  7: white    */
 
   "#3f3f3f", /*  8: brblack    */
-  "#cb4b16", /*  9: brred    */ 
-  "#6A8E6A", /* 10: brgreen  */ 
-  "#f4bf75", /* 11: bryellow */ 
-  "#7cb8bb", /* 12: brblue   */ 
-  "#f7768e",  /* 13: brmagenta*/ 
-  "#23edda", /* 14: brcyan   */ 
-  "#fdf6e3", /* 15: brwhite  */ 
+  "#cb4b16", /*  9: brred    */
+  "#6A8E6A", /* 10: brgreen  */
+  "#f4bf75", /* 11: bryellow */
+  "#7cb8bb", /* 12: brblue   */
+  "#f7768e",  /* 13: brmagenta*/
+  "#23edda", /* 14: brcyan   */
+  "#fdf6e3", /* 15: brwhite  */
 
   [255] = 0,
 
@@ -97,7 +97,7 @@ static const char *colorname[] = {
   "#c8d3f5", /* 256: default cursor colour */
   "#3654a7", /* 257: default reverse cursor colour */
   "#dcd7ba", /* 258: default foreground colour */
-  "#0b0b10", /* 259: default background colour */
+  "#0B0605", /* 260: default background colour */
 };
 
 /*

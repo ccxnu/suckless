@@ -4,7 +4,7 @@ static const Block blocks[] = {
   // {"⌨ ",   "kbselect",            0,                30},
 	/* {"",	   "music",	              1,               	12}, */
 	{"",	   "volume",	            1,               	10},
-	{"",	   "battery",	            5,               	 3},
+	{"",	   "battery",	            3,               	 3},
 	/* {"",	   "clock",	             30,               	 1}, */
 	/* {"",	   "tgredshift",	        0,               	15}, */
 	{"",	   "brightness",	      0,               	 5},
@@ -12,4 +12,4 @@ static const Block blocks[] = {
 };
 
 //Sets delimiter between status commands. NULL character ('\0') means no delimiter.
-static char *delim = " ";
+static char *delim = "  ";
