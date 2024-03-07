@@ -97,7 +97,7 @@ static const char *colorname[] = {
   "#c8d3f5", /* 256: default cursor colour */
   "#3654a7", /* 257: default reverse cursor colour */
   "#dcd7ba", /* 258: default foreground colour */
-  "#0B0605", /* 260: default background colour */
+  "#0E0806", /* 260: default background colour */
 };
 
 /*
