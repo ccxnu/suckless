@@ -26,6 +26,6 @@ Simply invoke the 'slock' command. To get out of it, enter your password.
 
 Patches
 -------------
-[Message](https://tools.suckless.org/slock/patches/message/): Add a message to your lock screen.
-[Transparency](https://github.com/khuedoan/slock/commit/5e7a95b50fd72efcf2a40d487278749a17cbb146): Add alpha to change transparency.
-[Xft Font](https://github.com/nathanielevan/slock/commit/26b565923ab1ff5e55669ad092f87cf96c231211): Add support for Xft font support.
+- [Message](https://tools.suckless.org/slock/patches/message/): Add a message to your lock screen.
+- [Transparency](https://github.com/khuedoan/slock/commit/5e7a95b50fd72efcf2a40d487278749a17cbb146): Add alpha to change transparency.
+- [Xft Font](https://github.com/nathanielevan/slock/commit/26b565923ab1ff5e55669ad092f87cf96c231211): Add support for Xft font support.
