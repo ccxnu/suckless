@@ -14,12 +14,14 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <fontconfig/fontconfig.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xinerama.h>
 #include <X11/keysym.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/Xatom.h>
+#include <X11/Xft/Xft.h>
 
 #include "arg.h"
 #include "util.h"
@@ -92,30 +94,25 @@ static void
 writemessage(Display *dpy, Window win, int screen)
 {
 	int len, line_len, width, height, s_width, s_height, i, j, k, tab_replace, tab_size;
-	XGCValues gr_values;
-	XFontStruct *fontinfo;
-	XColor color, dummy;
+	XftFont *fontinfo;
+	XftColor xftcolor;
+	XftDraw *xftdraw;
+	XGlyphInfo ext_msg, ext_space;
 	XineramaScreenInfo *xsi;
-	GC gc;
-	fontinfo = XLoadQueryFont(dpy, font_name);
+	xftdraw = XftDrawCreate(dpy, win, DefaultVisual(dpy, screen), DefaultColormap(dpy, screen));
+	fontinfo = XftFontOpenName(dpy, screen, font_name);
+	XftColorAllocName(dpy, DefaultVisual(dpy, screen), DefaultColormap(dpy, screen), text_color, &xftcolor);
 
 	if (fontinfo == NULL) {
 		if (count_error == 0) {
 			fprintf(stderr, "slock: Unable to load font \"%s\"\n", font_name);
-			fprintf(stderr, "slock: Try listing fonts with 'slock -f'\n");
 			count_error++;
 		}
 		return;
 	}
 
-	tab_size = 8 * XTextWidth(fontinfo, " ", 1);
-
-	XAllocNamedColor(dpy, DefaultColormap(dpy, screen),
-		 text_color, &color, &dummy);
-
-	gr_values.font = fontinfo->fid;
-	gr_values.foreground = color.pixel;
-	gc=XCreateGC(dpy,win,GCFont+GCForeground, &gr_values);
+	XftTextExtentsUtf8(dpy, fontinfo, (XftChar8 *) " ", 1, &ext_space);
+	tab_size = 8 * ext_space.width;
 
 	/*  To prevent "Uninitialized" warnings. */
 	xsi = NULL;
@@ -151,8 +148,9 @@ writemessage(Display *dpy, Window win, int screen)
 		s_height = DisplayHeight(dpy, screen);
 	}
 
+	XftTextExtentsUtf8(dpy, fontinfo, (XftChar8 *)message, line_len, &ext_msg);
 	height = s_height*3/7 - (k*20)/3;
-	width  = (s_width - XTextWidth(fontinfo, message, line_len))/2;
+	width  = (s_width - ext_msg.width)/2;
 
 	/* Look for '\n' and print the text between them. */
 	for (i = j = k = 0; i <= len; i++) {
@@ -164,7 +162,7 @@ writemessage(Display *dpy, Window win, int screen)
 				j++;
 			}
 
-			XDrawString(dpy, win, gc, width + tab_size*tab_replace, height + 20*k, message + j, i - j);
+			XftDrawStringUtf8(xftdraw, &xftcolor, fontinfo, width + tab_size*tab_replace, height + 20*k, (XftChar8 *)(message + j), i - j);
 			while (i < len && message[i] == '\n') {
 				i++;
 				j = i;
@@ -176,6 +174,10 @@ writemessage(Display *dpy, Window win, int screen)
 	/* xsi should not be NULL anyway if Xinerama is active, but to be safe */
 	if (XineramaIsActive(dpy) && xsi != NULL)
 			XFree(xsi);
+
+	XftFontClose(dpy, fontinfo);
+	XftColorFree(dpy, DefaultVisual(dpy, screen), DefaultColormap(dpy, screen), &xftcolor);
+	XftDrawDestroy(xftdraw);
 }
 
 
