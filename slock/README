@@ -6,7 +6,7 @@ simple screen locker utility for X.
 Requirements
 ------------
 In order to build slock you need the Xlib header files.
-
+Make sure to change the default font in 'config.h' file.
 
 Installation
 ------------
@@ -18,9 +18,11 @@ Afterwards enter the following command to build and install slock
 
     make clean install
 
+
 Running slock
 -------------
 Simply invoke the 'slock' command. To get out of it, enter your password.
+
 
 Patches
 -------------
