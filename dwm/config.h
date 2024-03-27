@@ -153,10 +153,6 @@ ResourcePref resources[] = {
 #include "options/shiftview.c"
 #include <X11/XF86keysym.h>
 
-static const char *ranger[] = {TERMINAL, "-n", "ranger", "-e", "ranger", NULL};
-static const char *lock[] = {"/usr/bin/betterlockscreen", "-l", "dimblur", NULL};
-static const char *btop[] = {TERMINAL, "-n", "btop", "-e", "btop", NULL};
-
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	STACKKEYS(MODKEY,                          focus)
@@ -171,11 +167,8 @@ static const Key keys[] = {
   /* PERSONAL APPS KEYMAPS */
 
 	{ MODKEY,    XK_d,     spawn,    {.v = dmenucmd } }, // dmenu
-	{ 0,         XK_F7,    spawn,    {.v = lock } }, // betterlockscreen
-	{ 0,         XK_F8,    spawn,    {.v = btop } }, // btop
-	{ MODKEY,    XK_F4,    spawn,    {.v = (const char*[]){ "pavucontrol" , NULL } } }, // Pavucontrol
+	{ MODKEY,    XK_F1,    spawn,    {.v = (const char*[]){ "pavucontrol" , NULL } } }, // Pavucontrol
 	{ MODKEY,    XK_bracketleft,     spawn,    {.v = (const char*[]){ BROWSER, NULL } } }, // Firefox
-	{ MODKEY,    XK_braceleft,     spawn,    {.v = ranger } }, // ranger
 
   /* PERSONAL SCRIPTS KEYMAPS */
 
@@ -239,23 +232,6 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioPause,          spawn,    SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
 	{ 0, XF86XK_AudioPlay,           spawn,    SHCMD("playerctl play-pause; pkill -RTMIN+12 dwmblocks") },
 	{ 0, XF86XK_AudioStop,           spawn,    SHCMD("playerctl stop; pkill -RTMIN+12 dwmblocks") },
-
-	//{ 0, XF86XK_AudioRewind,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "-10", NULL } } },
-	//{ 0, XF86XK_AudioForward,	       spawn,		      {.v = (const char*[]){ "mpc", "seek", "+10", NULL } } },
-	//{ 0, XF86XK_AudioMedia,		       spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
-	//{ 0, XF86XK_AudioMicMute,	       spawn,		      SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
-	//{ 0, XF86XK_PowerOff,	           spawn,		      {.v = (const char*[]){ "sysact", NULL } } },
-	//{ 0, XF86XK_Calculator,		       spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "bc", "-l", NULL } } },
-	//{ 0, XF86XK_Sleep,	             spawn,		      {.v = (const char*[]){ "sudo", "-A", "zzz", NULL } } },
-	//{ 0, XF86XK_DOS,	               spawn,		      {.v = termcmd } },
-	//{ 0, XF86XK_ScreenSaver,	       spawn,		      SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
-	//{ 0, XF86XK_TaskPane,		         spawn,		      {.v = (const char*[]){ TERMINAL, "-e", "btop", NULL } } },
-	//{ 0, XF86XK_Mail,		             spawn,		      SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
-	//{ 0, XF86XK_Launch1,	           spawn,		      {.v = (const char*[]){ "xset", "dpms", "force", "off", NULL } } },
-	//{ 0, XF86XK_TouchpadToggle,	     spawn,		      SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
-	//{ 0, XF86XK_TouchpadOff,	       spawn,		      {.v = (const char*[]){ "synclient", "TouchpadOff=1", NULL } } },
-	//{ 0, XF86XK_TouchpadOn,	         spawn,		      {.v = (const char*[]){ "synclient", "TouchpadOff=0", NULL } } },
-
 };
 
 static const Button buttons[] = {
