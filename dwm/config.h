@@ -112,16 +112,16 @@ static const Layout layouts[] = {
 #define SHCMD(cmd){ .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL } }
 
 /* User Commands */
-static const char dmenumon[2]    = "0";
-static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor,
-                                    "-nf", selfgcolor, "-sb", normbordercolor, "-sf", normfgcolor, NULL };
-static const char *termcmd[]     = { TERMINAL, NULL };
+static const char dmenumon[2] = "0";
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor,
+                                 "-nf", selfgcolor, "-sb", normbordercolor, "-sf", normfgcolor, NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
 
-static const char *lockcmd[]     = { "slock", NULL };
-static const char *pavucmd[]     = { "pavucontrol", NULL };
-static const char *browser[]     = { BROWSER, NULL };
-static const char *sysact[]      = { "sysact", NULL };
-static const char *capture[]     = { "capture", NULL };
+static const char *lockcmd[]  = { "slock", NULL };
+static const char *pavucmd[]  = { "pavucontrol", NULL };
+static const char *browser[]  = { BROWSER, NULL };
+static const char *sysact[]   = { "sysact", NULL };
+static const char *capture[]  = { "capture", NULL };
 
 /* Preferences */
 #include <X11/XF86keysym.h>
@@ -179,8 +179,11 @@ static const Key keys[] = {
 	{ MSHIFT,    XK_Left,           tagmon,      { .i = -1 } },
 	{ MSHIFT,    XK_Right,          tagmon,      { .i = +1 } },
 
+  /* Audio Output */
+	{ MODKEY,   XK_F2,               spawn,    SHCMD("pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-speaker") },
+	{ MODKEY,   XK_F3,               spawn,    SHCMD("pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-headphones") },
+
   /* Fn Keymaps */
-	{ MODKEY,   XK_F2,               spawn,    SHCMD("changeAudioOutput; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioMute,           spawn,    SHCMD("amixer -q sset Master toggle; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioRaiseVolume,    spawn,    SHCMD("amixer -q sset Master 5%+; pkill -RTMIN+10 dwmblocks")},
 	{ 0, XF86XK_AudioLowerVolume,    spawn,    SHCMD("amixer -q sset Master 5%-; pkill -RTMIN+10 dwmblocks")},
