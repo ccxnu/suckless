@@ -112,19 +112,16 @@ static const Layout layouts[] = {
 #define SHCMD(cmd){ .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL } }
 
 /* User Commands */
-static const char dmenumon[2] = "0";
-static const char *dmenucmd[] = {"dmenu_run", "-m",  dmenumon,        "-fn",
-                                 dmenufont,   "-nb", normbgcolor,     "-nf",
-                                 selfgcolor,  "-sb", normbordercolor, "-sf",
-                                 normfgcolor, NULL};
-static const char *termcmd[] = { TERMINAL, NULL };
+static const char dmenumon[2]    = "0";
+static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor,
+                                    "-nf", selfgcolor, "-sb", normbordercolor, "-sf", normfgcolor, NULL };
+static const char *termcmd[]     = { TERMINAL, NULL };
 
-static const char *lockcmd[]  = { "slock", NULL };
-static const char *pavucmd[]  = { "pavucontrol", NULL };
-static const char *browser[]  = { BROWSER, NULL };
-static const char *sysact[]  = { "sysact", NULL };
-static const char *capture[]  = { "capture", NULL };
-static const char *toogleAudio[]  = { "changeAudioOutput", NULL };
+static const char *lockcmd[]     = { "slock", NULL };
+static const char *pavucmd[]     = { "pavucontrol", NULL };
+static const char *browser[]     = { BROWSER, NULL };
+static const char *sysact[]      = { "sysact", NULL };
+static const char *capture[]     = { "capture", NULL };
 
 /* Preferences */
 #include <X11/XF86keysym.h>
@@ -135,42 +132,33 @@ static const Key keys[] = {
 	STACKKEYS(MSHIFT,               push  )
 
   /* TAGS */
-
 	TAGKEYS( XK_g, 0 )
 	TAGKEYS( XK_c, 1 )
 	TAGKEYS( XK_r, 2 )
 
-  /* PERSONAL APPS KEYMAPS */
-
-	{ MODKEY,    XK_Return,       spawn,    { .v = termcmd }     },
-	{ MODKEY,    XK_d,            spawn,    { .v = dmenucmd }    }, // dmenu
-	{ MODKEY,    XK_F1,           spawn,    { .v = pavucmd }     }, // Pavucontrol
-	{ MODKEY,    XK_F2,           spawn,    { .v = toogleAudio } }, // Toogle Audio Output
-	{ 0,         XK_F7,           spawn,    { .v = lockcmd }     }, // Lock screen
-	{ MODKEY,    XK_bracketleft,  spawn,    { .v = browser }     }, // Firefox
-
-  /* PERSONAL SCRIPTS KEYMAPS */
-
-	{ MSHIFT,    XK_BackSpace,    spawn,    {.v = sysact } }, // Systemt control
-	{ 0,         XK_Print,        spawn,    {.v = capture } }, // Screenshot
-
-  // FLOATING WINDOWS
-
-	{ MODKEY,    XK_apostrophe,    togglescratch,     {.ui = 1} },
-	{ MODKEY,    XK_semicolon,     togglescratch,     {.ui = 2} },
-	{ MSHIFT,    XK_Return,        togglescratch,     {.ui = 0} },
-	{ MSHIFT,    XK_f,             togglefloating,    {0} },
+  /* PERSONAL COMMANDS */
+	{ MODKEY,    XK_Return,       spawn,    { .v = termcmd  } },
+	{ MODKEY,    XK_d,            spawn,    { .v = dmenucmd } }, // dmenu
+	{ MODKEY,    XK_F1,           spawn,    { .v = pavucmd  } }, // Pavucontrol
+	{ MODKEY,    XK_bracketleft,  spawn,    { .v = browser  } }, // Firefox
+	{ MSHIFT,    XK_BackSpace,    spawn,    { .v = sysact   } }, // Systemt control
+	{ 0,         XK_Print,        spawn,    { .v = capture  } }, // Screenshot
+	{ 0,         XK_F7,           spawn,    { .v = lockcmd  } }, // Lock screen
 
   /* LAYOUTS KEYMAPS */
-
-	{ MODKEY,    XK_t,    setlayout,    {.v = &layouts[0]} },	/* tile si */
-	{ MSHIFT,    XK_t,    setlayout,    {.v = &layouts[1]} },	/* bstack */
-	{ MODKEY,    XK_m,    setlayout,    {.v = &layouts[2]} },	/* monocle si */
-	{ MSHIFT,    XK_m,    setlayout,    {.v = &layouts[3]} },	/* deck si*/
+	{ MODKEY,    XK_t,    setlayout,    { .v = &layouts[0] } },	/* tile si */
+	{ MSHIFT,    XK_t,    setlayout,    { .v = &layouts[1] } },	/* bstack */
+	{ MODKEY,    XK_m,    setlayout,    { .v = &layouts[2] } },	/* monocle si */
+	{ MSHIFT,    XK_m,    setlayout,    { .v = &layouts[3] } },	/* deck si*/
 	{ MSHIFT,    XK_v,    setlayout,    {0} },
 
-  /* GENERAL SYSTEM KEYMAPS */
+  // FLOATING WINDOWS
+	{ MODKEY,    XK_apostrophe,   togglescratch,     { .ui = 1 } },
+	{ MODKEY,    XK_semicolon,    togglescratch,     { .ui = 2 } },
+	{ MSHIFT,    XK_Return,       togglescratch,     { .ui = 0 } },
+	{ MSHIFT,    XK_f,            togglefloating,    {0} },
 
+  /* GENERAL SYSTEM KEYMAPS */
 	{ MODKEY,    XK_Tab,          view,           {0} },
 	{ MSHIFT,    XK_w,            killclient,     {0} },
 	{ MODKEY,    XK_f,            togglefullscr,  {0} },
@@ -179,21 +167,20 @@ static const Key keys[] = {
 	{ MODKEY,    XK_k,            setmfact,       { .f = +0.05 } },
 
   /* WINDOW GAPS */
-
 	{ MSHIFT,    XK_a,    defaultgaps,    {0} },
 	{ MODKEY,    XK_s,    togglesticky,   {0} },
-	{ MODKEY,    XK_z,    incrgaps,       {.i = +2 } },
-	{ MODKEY,    XK_x,    incrgaps,       {.i = -2 } },
+	{ MODKEY,    XK_z,    incrgaps,       { .i = +2 } },
+	{ MODKEY,    XK_x,    incrgaps,       { .i = -2 } },
 	{ MODKEY,    XK_b,    togglebar,      {0} },
 
   /* EXTERNAL MONITOR */
-	{ MSHIFT,    XK_plus,           focusmon,    {.i = -1 } },
-	{ MSHIFT,    XK_bracketright,   focusmon,    {.i = +1 } },
-	{ MSHIFT,    XK_Left,           tagmon,      {.i = -1 } },
-	{ MSHIFT,    XK_Right,          tagmon,      {.i = +1 } },
+	{ MSHIFT,    XK_plus,           focusmon,    { .i = -1 } },
+	{ MSHIFT,    XK_bracketright,   focusmon,    { .i = +1 } },
+	{ MSHIFT,    XK_Left,           tagmon,      { .i = -1 } },
+	{ MSHIFT,    XK_Right,          tagmon,      { .i = +1 } },
 
   /* Fn Keymaps */
-
+	{ MODKEY,   XK_F2,               spawn,    SHCMD("changeAudioOutput; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioMute,           spawn,    SHCMD("amixer -q sset Master toggle; pkill -RTMIN+10 dwmblocks") },
 	{ 0, XF86XK_AudioRaiseVolume,    spawn,    SHCMD("amixer -q sset Master 5%+; pkill -RTMIN+10 dwmblocks")},
 	{ 0, XF86XK_AudioLowerVolume,    spawn,    SHCMD("amixer -q sset Master 5%-; pkill -RTMIN+10 dwmblocks")},
