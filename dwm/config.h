@@ -9,35 +9,35 @@
 #define BROWSER "firefox"
 
 /*  Appearance */
-static unsigned int borderpx  = 1; /* border pixel of windows and border or screen */
-static unsigned int snap      = 0; /* snap pixel */
-static unsigned int gappih    = 0; /* horiz inner gap between windows */
-static unsigned int gappiv    = 0; /* vert inner gap between windows */
-static unsigned int gappoh    = 0; /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 0; /* vert outer gap between windows and screen edge */
-static int swallowfloating    = 0; /* 1 means swallow floating windows by default */
-static int smartgaps          = 1; /* 1 means no outer gap when there is only one window */
-static int showbar            = 0; /* 0 means no bar */
-static int topbar             = 1;  /* 0 means bottom bar */
+static const unsigned int borderpx  = 1; /* border pixel of windows and border or screen */
+static const unsigned int snap      = 0; /* snap pixel */
+static const unsigned int gappih    = 0; /* horiz inner gap between windows */
+static const unsigned int gappiv    = 0; /* vert inner gap between windows */
+static const unsigned int gappoh    = 0; /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 0; /* vert outer gap between windows and screen edge */
+static const int swallowfloating    = 0; /* 1 means swallow floating windows by default */
+static const int smartgaps          = 1; /* 1 means no outer gap when there is only one window */
+static const int showbar            = 0; /* 0 means no bar */
+static const int topbar             = 1;  /* 0 means bottom bar */
 
 /* Colors */
-static char normfgcolor[]     = "#bdc3af";
-static char normbgcolor[]     = "#000000";
-static char normbordercolor[] = "#1D1D1D";
+static const char normfgcolor[]     = "#bdc3af";
+static const char normbgcolor[]     = "#000000";
+static const char normbordercolor[] = "#1D1D1D";
 
-static char selfgcolor[]      = "#a38a5b";
-static char selbgcolor[]      = "#000000";
-static char selbordercolor[]  = "#841a5c";
+static const char selfgcolor[]      = "#a38a5b";
+static const char selbgcolor[]      = "#000000";
+static const char selbordercolor[]  = "#841a5c";
 
-static char *colors[][3] = {
+static const char *colors[][3] = {
     /*               fg           bg           border   */
   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
   [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor },
 };
 
 /*  Fonts  */
-static char *fonts[] = { "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true" };
-static char dmenufont[] = "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true";
+static const char *fonts[] = { "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true" };
+static const char dmenufont[] = "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true";
 
 /* Tagging */
 static const char *tags[] = { " ", " ", " " };
@@ -73,9 +73,9 @@ static const Rule rules[] = {
 };
 
 /* Layout(s) */
-static float mfact = 0.55;  /* factor of master area size [0.05..0.95] */
-static int nmaster = 1;     /* number of clients in master area */
-static int resizehints = 0; /* 1 means respect size hints in tiled resizals */
+static const float mfact        = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster        = 1; /* number of clients in master area */
+static const int resizehints    = 0; /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1 /* force two clients to always split vertically */
@@ -111,24 +111,8 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd){ .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL } }
 
-ResourcePref resources[] = {
-  { "normbgcolor",        STRING,  &normbgcolor },
-  { "normbordercolor",    STRING,  &normbordercolor },
-  { "normfgcolor",        STRING,  &normfgcolor },
-  { "selbgcolor",         STRING,  &selbgcolor },
-  { "selbordercolor",     STRING,  &selbordercolor },
-  { "selfgcolor",         STRING,  &selfgcolor },
-  { "borderpx",          	INTEGER, &borderpx },
-  { "snap",          		INTEGER, &snap },
-  { "showbar",          	INTEGER, &showbar },
-  { "topbar",          	INTEGER, &topbar },
-  { "nmaster",          	INTEGER, &nmaster },
-  { "resizehints",       	INTEGER, &resizehints },
-  { "mfact",      	 	FLOAT,   &mfact },
-};
-
 /* User Commands */
-static char dmenumon[2] = "0";
+static const char dmenumon[2] = "0";
 static const char *dmenucmd[] = {"dmenu_run", "-m",  dmenumon,        "-fn",
                                  dmenufont,   "-nb", normbgcolor,     "-nf",
                                  selfgcolor,  "-sb", normbordercolor, "-sf",
