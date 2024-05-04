@@ -37,7 +37,6 @@ static const char *colors[][3] = {
 
 /*  Fonts  */
 static const char *fonts[] = { "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true" };
-static const char dmenufont[] = "JetBrainsMono Nerd Font:size=10:antialias=true:autohint=true";
 
 /* Tagging */
 static const char *tags[] = { " ", " ", " " };
@@ -113,11 +112,11 @@ static const Layout layouts[] = {
 
 /* User Commands */
 static const char dmenumon[2] = "0";
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor,
-                                 "-nf", selfgcolor, "-sb", normbordercolor, "-sf", normfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
 static const char *lockcmd[]  = { "slock", NULL };
+static const char *keyboard[] = { "kbselect", NULL };
 static const char *pavucmd[]  = { "pavucontrol", NULL };
 static const char *browser[]  = { BROWSER, NULL };
 static const char *sysact[]   = { "sysact", NULL };
@@ -142,6 +141,7 @@ static const Key keys[] = {
 	{ MODKEY,    XK_F1,           spawn,    { .v = pavucmd  } }, // Pavucontrol
 	{ MODKEY,    XK_bracketleft,  spawn,    { .v = browser  } }, // Firefox
 	{ MSHIFT,    XK_BackSpace,    spawn,    { .v = sysact   } }, // Systemt control
+	{ MODKEY,    XK_Print,        spawn,    { .v = keyboard } }, // Change keymap
 	{ 0,         XK_Print,        spawn,    { .v = capture  } }, // Screenshot
 	{ 0,         XK_F7,           spawn,    { .v = lockcmd  } }, // Lock screen
 

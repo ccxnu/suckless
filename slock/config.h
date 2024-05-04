@@ -15,7 +15,7 @@ static const float alpha = 0.8;
 static const int failonclear = 1;
 
 /* default message */
-static const char * message = " Suckless: Software that sucks less.";
+static const char * message = " It's okay to live hard.";
 
 /* text color */
 static const char * text_color = "#ffffff";
