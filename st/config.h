@@ -1,4 +1,7 @@
-/* Cuenca Pablo's Configurations */
+/* =====================================
+  @author: Pablo Cuenca
+  @url: https://github.com/ccxnu
+===================================== */
 
 /* FONT & BORDER */
 static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=18:antialias=true:autohint=true";
@@ -78,17 +81,17 @@ static const char *colorname[] = {
   "#8EB95F", /*  2: green    */
   "#e0af68", /*  3: yellow   */
   "#7cb8bb", /* 12: brblue   */
+  "#227DBD", /*  4: blue     */
   "#d33682", /*  5: magenta  */
-  "#2aa198", /*  6: cyan     */
   "#E7DEC3", /*  7: white    */
 
-  "#3f3f3f", /*  8: brblack    */
+  "#656565", /*  8: brblack    */
   "#cb4b16", /*  9: brred    */
   "#6A8E6A", /* 10: brgreen  */
   "#f4bf75", /* 11: bryellow */
-  "#268bd2", /*  4: blue     */
+  "#5f8686", /*  6: cyan     */
   "#f7768e",  /* 13: brmagenta*/
-  "#23edda", /* 14: brcyan   */
+  "#1BBFB0", /* 14: brcyan   */
   "#fdf6e3", /* 15: brwhite  */
 
   [255] = 0,
