@@ -4,7 +4,7 @@
 ===================================== */
 
 /* FONT & BORDER */
-static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=18:antialias=true:autohint=true";
+static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=21:antialias=true:autohint=true";
 static int borderpx = 0; // To put padding between content and screen
 
 /* SHELL */
@@ -68,7 +68,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.85;
+float alpha = 0.9;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
@@ -76,22 +76,22 @@ float alphaUnfocus;
 /* Defaults to this colors if there aren't Xresources defining them */
 /* solarized dark */
 static const char *colorname[] = {
-  "#00181D", /*  0: black    */
+  "#252321", /*  0: black    */
   "#dc322f", /*  1: red      */
-  "#8EB95F", /*  2: green    */
-  "#e0af68", /*  3: yellow   */
-  "#7cb8bb", /* 12: brblue   */
-  "#227DBD", /*  4: blue     */
-  "#d33682", /*  5: magenta  */
+  "#8ec07c", /*  2: green    */
+  "#C99D5D", /*  3: yellow   */
+  "#076678", /*  4: blue     */
+  "#b16286", /*  5: magenta  */
+  "#98971a", /*  6: cyan     */
   "#E7DEC3", /*  7: white    */
 
-  "#656565", /*  8: brblack    */
+  "#7c6f64", /*  8: brblack    */
   "#cb4b16", /*  9: brred    */
-  "#6A8E6A", /* 10: brgreen  */
+  "#4A704C", /* 10: brgreen  */
   "#f4bf75", /* 11: bryellow */
-  "#5f8686", /*  6: cyan     */
-  "#f7768e",  /* 13: brmagenta*/
-  "#1BBFB0", /* 14: brcyan   */
+  "#517A7D", /* 12: brblue   */
+  "#d787af", /* 13: brmagenta*/
+  "#A5A822", /* 14: brcyan   */
   "#fdf6e3", /* 15: brwhite  */
 
   [255] = 0,
@@ -99,7 +99,7 @@ static const char *colorname[] = {
   /* more colors can be added after 255 to use with DefaultXX */
   "#c8d3f5", /* 256: default cursor colour */
   "#3654a7", /* 257: default reverse cursor colour */
-  "#dcd7ba", /* 258: default foreground colour */
+  "#ebdbb2", /* 258: default foreground colour */
   "#0E0806", /* 260: default background colour */
 };
 
