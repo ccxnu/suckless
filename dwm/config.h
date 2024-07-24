@@ -6,7 +6,7 @@
 /*  Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
+#define BROWSER "Floorp"
 
 /*  Appearance */
 static const unsigned int borderpx  = 1; /* border pixel of windows and border or screen */
@@ -46,14 +46,16 @@ typedef struct {
   const char *name;
   const void *cmd;
 } Sp;
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL};
+const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "110x30", NULL};
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=18", "-g", "35x12", "-e", "qalc", NULL};
 const char *spcmd3[] = {TERMINAL, "-n", "spclok", "-g", "37x09", "-e", "tty-clock", "-C", "7", NULL};
+const char *spcmd4[] = {TERMINAL, "-n", "spaudi", "-g", "100x26", "-e", "pulsemixer", NULL};
 static Sp scratchpads[] = {
   /* name      cmd  */
   { "spterm", spcmd1 },
   { "spcalc", spcmd2 },
   { "spclok", spcmd3 },
+  { "spaudi", spcmd4 },
 };
 
 static const Rule rules[] = {
@@ -62,13 +64,15 @@ static const Rule rules[] = {
    *	WM_NAME(STRING) = title
    */
   /* Class-Instance-Title-Tags-Mask-Isfloating-Isterminal-Noswallow-Monitor */
-  { "Firefox",    NULL,         NULL,     1 << 1,    0,    0,    0,    -1 },
+  { "floorp",  NULL,         NULL,     1 << 1,    0,    0,    0,    -1 },
+  { "ONLYOFFICE Desktop Editors", NULL,     NULL,     1 << 2,    0,    0,    0,    -1 },
   { TERMCLASS,    NULL,         NULL,          0,    0,    1,    0,    -1 },
   { TERMCLASS,    "floatterm",  NULL,          0,    1,    1,    0,    -1 },
   { TERMCLASS,    "bg",         NULL,     1 << 7,    0,    1,    0,    -1 },
   { TERMCLASS,    "spterm",     NULL,   SPTAG(0),    1,    1,    0,    -1 },
   { TERMCLASS,    "spcalc",     NULL,   SPTAG(1),    1,    1,    0,    -1 },
   { TERMCLASS,    "spclok",     NULL,   SPTAG(2),    1,    1,    0,    -1 },
+  { TERMCLASS,    "spaudi",     NULL,   SPTAG(3),    1,    1,    0,    -1 },
 };
 
 /* Layout(s) */
@@ -117,7 +121,6 @@ static const char *termcmd[]  = { TERMINAL, NULL };
 
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *keyboard[] = { "kbselect", NULL };
-static const char *pavucmd[]  = { "pavucontrol", NULL };
 static const char *browser[]  = { BROWSER, NULL };
 static const char *sysact[]   = { "sysact", NULL };
 static const char *capture[]  = { "capture", NULL };
@@ -138,7 +141,6 @@ static const Key keys[] = {
   /* PERSONAL COMMANDS */
 	{ MODKEY,    XK_Return,       spawn,    { .v = termcmd  } },
 	{ MODKEY,    XK_d,            spawn,    { .v = dmenucmd } }, // dmenu
-	{ MODKEY,    XK_F1,           spawn,    { .v = pavucmd  } }, // Pavucontrol
 	{ MODKEY,    XK_bracketleft,  spawn,    { .v = browser  } }, // Firefox
 	{ MSHIFT,    XK_BackSpace,    spawn,    { .v = sysact   } }, // Systemt control
 	{ MODKEY,    XK_Print,        spawn,    { .v = keyboard } }, // Change keymap
@@ -153,9 +155,10 @@ static const Key keys[] = {
 	{ MSHIFT,    XK_v,    setlayout,    {0} },
 
   // FLOATING WINDOWS
-	{ MODKEY,    XK_apostrophe,   togglescratch,     { .ui = 1 } },
-	{ MODKEY,    XK_semicolon,    togglescratch,     { .ui = 2 } },
-	{ MSHIFT,    XK_Return,       togglescratch,     { .ui = 0 } },
+	{ MODKEY,    XK_F1,           togglescratch,     { .ui = 3 } }, // Pavucontrol
+	{ MODKEY,    XK_apostrophe,   togglescratch,     { .ui = 1 } }, // Calculator
+	{ MODKEY,    XK_semicolon,    togglescratch,     { .ui = 2 } }, // Clock
+	{ MSHIFT,    XK_Return,       togglescratch,     { .ui = 0 } }, // Terminal
 	{ MSHIFT,    XK_f,            togglefloating,    {0} },
 
   /* GENERAL SYSTEM KEYMAPS */
