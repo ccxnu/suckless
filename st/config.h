@@ -68,7 +68,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.9;
+float alpha = 0.85;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
@@ -100,7 +100,7 @@ static const char *colorname[] = {
   "#c8d3f5", /* 256: default cursor colour */
   "#3654a7", /* 257: default reverse cursor colour */
   "#ebdbb2", /* 258: default foreground colour */
-  "#0E0806", /* 260: default background colour */
+  "#060209", /* 260: default background colour */
 };
 
 /*
