@@ -4,7 +4,7 @@
 ===================================== */
 
 /* FONT & BORDER */
-static char *font = "JetBrainsMono Nerd Font Mono:pixelsize=21:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNL Nerd Font Mono:pixelsize=21:antialias=true:autohint=true";
 static int borderpx = 0; // To put padding between content and screen
 
 /* SHELL */
@@ -100,7 +100,7 @@ static const char *colorname[] = {
   "#c8d3f5", /* 256: default cursor colour */
   "#3654a7", /* 257: default reverse cursor colour */
   "#ebdbb2", /* 258: default foreground colour */
-  "#060209", /* 260: default background colour */
+  "#060F0B", /* 260: default background colour */
 };
 
 /*
