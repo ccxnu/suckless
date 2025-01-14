@@ -9,13 +9,21 @@ static const char *colorname[NUMCOLS] = {
 };
 
 /* lock screen opacity */
-static const float alpha = 0.8;
+static const float alpha = 0.85;
 
 /* treat a cleared input like a wrong password (color) */
 static const int failonclear = 1;
 
 /* default message */
-static const char * message = " It's okay to live hard.";
+//static const char * message = " It's okay to live hard.";
+
+static const char * message =
+    "      |\\      _,,,---,,_\n"
+    "ZZZzz /,`.-'`'    -.  ;-;;,_\n"
+    "     |,4-  ) )-,_. ,\\ (  `'-'\n"
+    "    '---''(_/--'  `-'\\_)  ccxnu\n"
+    "\n"
+    "    It's okay to live hard";
 
 /* text color */
 static const char * text_color = "#ffffff";
