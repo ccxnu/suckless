@@ -27,7 +27,7 @@ static const char normbordercolor[] = "#1D1D1D";
 
 static const char selfgcolor[]      = "#a38a5b";
 static const char selbgcolor[]      = "#000000";
-static const char selbordercolor[]  = "#841a5c";
+static const char selbordercolor[]  = "#340A24";
 
 static const char *colors[][3] = {
     /*               fg           bg           border   */
@@ -120,10 +120,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
 static const char *lockcmd[]  = { "slock", NULL };
+static const char *xsctcmd[]  = { "xsct", "-t", NULL };
 static const char *keyboard[] = { "kbselect", NULL };
 static const char *browser[]  = { BROWSER, NULL };
 static const char *sysact[]   = { "sysact", NULL };
 static const char *capture[]  = { "capture", NULL };
+static const char *passmenu[]  = { "dmenupass", NULL };
 
 /* Preferences */
 #include <X11/XF86keysym.h>
@@ -141,10 +143,12 @@ static const Key keys[] = {
   /* PERSONAL COMMANDS */
 	{ MODKEY,    XK_Return,       spawn,    { .v = termcmd  } },
 	{ MODKEY,    XK_d,            spawn,    { .v = dmenucmd } }, // dmenu
+	{ MSHIFT,    XK_d,            spawn,    { .v = passmenu } }, // passmenu
 	{ MODKEY,    XK_bracketleft,  spawn,    { .v = browser  } }, // Firefox
 	{ MSHIFT,    XK_BackSpace,    spawn,    { .v = sysact   } }, // Systemt control
 	{ MODKEY,    XK_Print,        spawn,    { .v = keyboard } }, // Change keymap
 	{ 0,         XK_Print,        spawn,    { .v = capture  } }, // Screenshot
+	{ MODKEY,    XK_F7,           spawn,    { .v = xsctcmd  } }, // Set color temperature of screen
 	{ 0,         XK_F7,           spawn,    { .v = lockcmd  } }, // Lock screen
 
   /* LAYOUTS KEYMAPS */
@@ -166,8 +170,8 @@ static const Key keys[] = {
 	{ MSHIFT,    XK_w,            killclient,     {0} },
 	{ MODKEY,    XK_f,            togglefullscr,  {0} },
 	{ MODKEY,    XK_space,        zoom,           {0} },
-	{ MODKEY,    XK_j,            setmfact,	      { .f = -0.05 } },
-	{ MODKEY,    XK_k,            setmfact,       { .f = +0.05 } },
+	{ MODKEY,    XK_j,            setmfact,	      { .f = -0.03 } },
+	{ MODKEY,    XK_k,            setmfact,       { .f = +0.03 } },
 
   /* WINDOW GAPS */
 	{ MSHIFT,    XK_a,    defaultgaps,    {0} },

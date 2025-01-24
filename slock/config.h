@@ -23,7 +23,7 @@ static const char * message =
     "     |,4-  ) )-,_. ,\\ (  `'-'\n"
     "    '---''(_/--'  `-'\\_)  ccxnu\n"
     "\n"
-    "    It's okay to live hard";
+    "     It's okay to live hard";
 
 /* text color */
 static const char * text_color = "#ffffff";

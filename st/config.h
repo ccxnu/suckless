@@ -68,40 +68,42 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.85;
+float alpha = 0.90;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
 /* Terminal colors (16 first used in escape sequence) */
 /* Defaults to this colors if there aren't Xresources defining them */
-/* solarized dark */
+/* Base16 - Apathy */
+
 static const char *colorname[] = {
-  "#252321", /*  0: black    */
-  "#dc322f", /*  1: red      */
-  "#8ec07c", /*  2: green    */
+  "#1C2023", /*  0: black    */
+  "#d35c5c", /*  1: red      */
+  "#4E9688", /*  2: green    */
   "#C99D5D", /*  3: yellow   */
-  "#076678", /*  4: blue     */
-  "#b16286", /*  5: magenta  */
-  "#98971a", /*  6: cyan     */
+  "#3E6589", /*  4: blue     */
+  "#883E96", /*  5: pink     */
+  "#4E4C96", /*  6: purple     */
   "#E7DEC3", /*  7: white    */
 
-  "#7c6f64", /*  8: brblack    */
-  "#cb4b16", /*  9: brred    */
-  "#4A704C", /* 10: brgreen  */
+  "#6A667F", /*  8: brblack    */
+  "#C7AE95", /*  9: brred    */
+  "#5F8686", /* 10: brgreen  RSB */
   "#f4bf75", /* 11: bryellow */
-  "#517A7D", /* 12: brblue   */
-  "#d787af", /* 13: brmagenta*/
-  "#A5A822", /* 14: brcyan   */
-  "#fdf6e3", /* 15: brwhite  */
+  "#b7bbd0", /* 12: brblue   */
+  "#CDB1B7", /* 13: brpink   RSB */
+  "#8888AF", /* 14: brpurple RSB */
+  "#FDF6E3", /* 15: brwhite  */
 
   [255] = 0,
 
   /* more colors can be added after 255 to use with DefaultXX */
   "#c8d3f5", /* 256: default cursor colour */
   "#3654a7", /* 257: default reverse cursor colour */
-  "#ebdbb2", /* 258: default foreground colour */
+  "#F2EFEB", /* 258: default foreground colour */
   "#060F0B", /* 260: default background colour */
 };
+
 
 /*
  * Default colors (colorname index)
