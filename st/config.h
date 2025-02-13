@@ -77,31 +77,31 @@ float alphaUnfocus;
 /* Base16 - Apathy */
 
 static const char *colorname[] = {
-  "#1C2023", /*  0: black    */
-  "#d35c5c", /*  1: red      */
-  "#4E9688", /*  2: green    */
-  "#C99D5D", /*  3: yellow   */
-  "#3E6589", /*  4: blue     */
-  "#883E96", /*  5: pink     */
-  "#4E4C96", /*  6: purple     */
-  "#E7DEC3", /*  7: white    */
+    "#191724",    //  0: black
+    "#893f45",    //  1: red
+    "#5F8686",    //  2: green
+    "#C99D5D",    //  3: yellow
+    "#31748F",    //  4: blue
+    "#B294BB",    //  5: magenta
+    "#CDB1B7",    //  6: cyan
+    "#E7DEC3",    //  7: white
 
-  "#6A667F", /*  8: brblack    */
-  "#C7AE95", /*  9: brred    */
-  "#5F8686", /* 10: brgreen  RSB */
-  "#f4bf75", /* 11: bryellow */
-  "#b7bbd0", /* 12: brblue   */
-  "#CDB1B7", /* 13: brpink   RSB */
-  "#8888AF", /* 14: brpurple RSB */
-  "#FDF6E3", /* 15: brwhite  */
+    "#26233A",    //  8: brblack
+    "#EB6F92",    //  9: brred
+    "#9CCFD8",    // 10: brgreen
+    "#F6C177",    // 11: bryellow
+    "#3e8fb0",    // 12: brblue
+    "#C4A7E7",    // 13: brmagenta
+    "#EBBCBA",    // 14: brcyan
+    "#E0DEF4",    // 15: brwhite
 
-  [255] = 0,
+    [255] = 0,
 
-  /* more colors can be added after 255 to use with DefaultXX */
-  "#c8d3f5", /* 256: default cursor colour */
-  "#3654a7", /* 257: default reverse cursor colour */
-  "#F2EFEB", /* 258: default foreground colour */
-  "#060F0B", /* 260: default background colour */
+    /* more colors can be added after 255 to use with DefaultXX */
+    "#060F0B", /* 256: default background colour */
+    "#F2EFEB", /* 257: default foreground colour */
+    "#c8d3f5", /* 258: default cursor colour */
+    "#3654a7", /* 259: default reverse cursor colour */
 };
 
 
@@ -109,11 +109,11 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultbg = 259;
-unsigned int background = 259;
-unsigned int defaultfg = 258;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultbg = 256;
+unsigned int background = 256;
+unsigned int defaultfg = 257;
+unsigned int defaultcs = 258;
+unsigned int defaultrcs = 259;
 
 /*
  * Default shape of cursor
