@@ -4,7 +4,7 @@
 ===================================== */
 
 /* FONT & BORDER */
-static char *font = "JetBrainsMonoNL Nerd Font Mono:pixelsize=21:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoNL Nerd Font Mono:pixelsize=18:antialias=true:autohint=true";
 static int borderpx = 0; // To put padding between content and screen
 
 /* SHELL */
@@ -98,7 +98,7 @@ static const char *colorname[] = {
     [255] = 0,
 
     /* more colors can be added after 255 to use with DefaultXX */
-    "#060F0B", /* 256: default background colour */
+    "#000B0E", /* 256: default background colour */
     "#F2EFEB", /* 257: default foreground colour */
     "#c8d3f5", /* 258: default cursor colour */
     "#3654a7", /* 259: default reverse cursor colour */
@@ -178,22 +178,22 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i = 0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i = 0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i = 0} },
-  /* PERSONAL KEYS */
-  { MODKEY,               XK_c,           clipcopy,       {.i = 0} },
-  { MODKEY,               XK_v,           clippaste,      {.i = 0} },
-  { MODKEY,               XK_u,           kscrollup,      {.i = -1}},
-  { MODKEY,               XK_d,           kscrolldown,    {.i = -1}},
-  { MODKEY,               XK_k,           kscrollup,      {.i = 1} },
-  { MODKEY,               XK_j,           kscrolldown,    {.i = 1} },
-  { MODKEY,               XK_s,           changealpha,    {.f = -0.05}},
-  { MODKEY,               XK_a,           changealpha,    {.f = +0.05}},
+    /* PERSONAL KEYS */
+    { MODKEY,               XK_c,           clipcopy,       {.i = 0} },
+    { MODKEY,               XK_v,           clippaste,      {.i = 0} },
+    { MODKEY,               XK_u,           kscrollup,      {.i = -1}},
+    { MODKEY,               XK_d,           kscrolldown,    {.i = -1}},
+    { MODKEY,               XK_k,           kscrollup,      {.i = 1} },
+    { MODKEY,               XK_j,           kscrolldown,    {.i = 1} },
+    { MODKEY,               XK_s,           changealpha,    {.f = -0.05}},
+    { MODKEY,               XK_a,           changealpha,    {.f = +0.05}},
 	{ ControlMask,          XK_plus,        zoom,           {.f = +1} },
 	{ ControlMask,          XK_minus,       zoom,           {.f = -1} },
-  { ControlMask,          XK_numbersign,  zoomreset,      {.f = 0} },
-  /* ST SCRIPTS */
-  { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd}},
-  { MODKEY,               XK_c,           externalpipe,   {.v = copyurlcmd}},
-  { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput}},
+    { ControlMask,          XK_numbersign,  zoomreset,      {.f = 0} },
+    /* ST SCRIPTS */
+    { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd}},
+    { MODKEY,               XK_c,           externalpipe,   {.v = copyurlcmd}},
+    { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput}},
 };
 
 /*
